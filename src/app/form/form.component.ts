@@ -36,6 +36,7 @@ export class FormComponent implements OnInit, DoCheck {
   //para usar el FormBuilder (validación del formulario/control de datos introducidos)
   constructor(private _formBuilder: FormBuilder, private _dataService: DataService) {
   }
+  //para limpiar el formulario y tener todo listo para añadir otro contacto
   resetFormValues(): void {
     this.contactForm = this._formBuilder.group({
       firstName: ["", [Validators.required, Validators.minLength(3)]],
