@@ -6,23 +6,24 @@
     ></span
   >
 </mat-toolbar>
-<section *ngFor="let person of contactList; let index = index">
-  <div class="contact-details">
-    <p>{{ person.firstName }} {{ person.lastName }}</p>
-    <p>
-      {{ person.age }} years old. Born:
-      {{ person.birthday.toLocaleDateString() }}
-    </p>
+<section class="contact-list">
+  <div
+    class="contact-details"
+    *ngFor="let person of contactList; let index = index"
+  >
+    <p class="contact-name">{{ person.firstName }} {{ person.lastName }}</p>
+    <p>{{ person.age }} years old</p>
+    <p>{{ person.birthday.toLocaleDateString() }}</p>
     <p>{{ person.dni }}</p>
     <p>{{ person.gender }}</p>
     <p>{{ person.favColor }}</p>
-  </div>
-  <div class="contact-controls">
-    <button mat-raised-button (click)="editContact(index)" color="primary">
-      Edit
-    </button>
-    <button mat-raised-button (click)="deleteContact(index)" color="accent">
-      Delete
-    </button>
+    <div class="control-buttons">
+      <button mat-raised-button (click)="editContact(index)" color="primary">
+        Edit
+      </button>
+      <button mat-raised-button (click)="deleteContact(index)" color="accent">
+        Delete
+      </button>
+    </div>
   </div>
 </section>

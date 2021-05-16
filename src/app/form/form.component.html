@@ -81,6 +81,7 @@
       </td>
       <td>
         <mat-radio-group
+          class="radio-buttons"
           aria-label="Select an option"
           formControlName="gender"
           required
@@ -88,7 +89,6 @@
           <mat-radio-button
             *ngFor="let choice of genderChoices"
             value="{{ choice }}"
-            [checked]="choice === 'no answer'"
             >{{ choice }}</mat-radio-button
           >
         </mat-radio-group>
@@ -112,7 +112,7 @@
         </mat-form-field>
       </td>
     </tr>
-    <tr>
+    <tr class="control-buttons">
       <button
         type="button"
         mat-raised-button

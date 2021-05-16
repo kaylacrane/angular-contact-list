@@ -16,10 +16,10 @@ export class DataService {
   }
   
   //funciones para manejar la acción del formulario
-  getFormAction(): boolean {
+  getIsNewContact(): boolean {
     return this._isNewContact;
   }
-  setFormAction(action: boolean) {
+  setIsNewContact(action: boolean) {
     this._isNewContact = action;
   }
   //funciones para manejar el index del contacto a modificar

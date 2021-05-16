@@ -46,6 +46,9 @@ export class FormComponent implements OnInit, DoCheck {
       favColor: ["", Validators.required],
       gender: ["no answer", Validators.required]
     });
+    this.formError = false;
+    this.index = -1;
+    this._dataService.setIsNewContact(true)
   }
   ngOnInit(): void {
     //incializar el formulario al arrancar
@@ -55,7 +58,7 @@ export class FormComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
-    this.isNewContact = this._dataService.getFormAction();
+    this.isNewContact = this._dataService.getIsNewContact();
     //para cuando hay cambios en el componente de listado (botones de borrar/modificar contacto)
     if (this._dataService.getEditIndex() > -1) {
       //recoger el index del servicio y guardarlo en una variable local
@@ -69,7 +72,7 @@ export class FormComponent implements OnInit, DoCheck {
 //función que se dispara cuando guardamos un contacto
   saveContact(): void {
     //confirmar si es acción de añadir o modificar
-    this.isNewContact = this._dataService.getFormAction();
+    this.isNewContact = this._dataService.getIsNewContact();
     //recoger datos del formulario
     this.person = this.contactForm.value;
     this.person.birthday = new Date(this.person.birthday);
@@ -85,16 +88,11 @@ export class FormComponent implements OnInit, DoCheck {
       } else if (this.isNewContact === false && this.index > -1) {
         //actualizar datos del contacto con datos actuales del formulario
         this.contactList[this.index] = this.person;
-        //resetear acción del formulario
-        this._dataService.setFormAction(true);
       }
       //actualizar lista de contactos en servicio (variable global)
       this._dataService.updateContactList(this.contactList);
-      //resetear el index local
-      this.index = -1;
       //limpiar el formulario para poder añadir más contactos
       this.resetFormValues();
-      this.formError = false;
     }
   }
 }
