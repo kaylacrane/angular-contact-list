@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <span
+    >My Contact List
+    <span *ngIf="contactList.length > 0"
+      >( {{ contactList.length }} )</span
+    ></span
+  >
+</mat-toolbar>
+<section *ngFor="let person of contactList; let index = index">
+  <div class="contact-details">
+    <p>{{ person.firstName }} {{ person.lastName }}</p>
+    <p>
+      {{ person.age }} years old. Born:
+      {{ person.birthday.toLocaleDateString() }}
+    </p>
+    <p>{{ person.dni }}</p>
+    <p>{{ person.gender }}</p>
+    <p>{{ person.favColor }}</p>
+  </div>
+  <div class="contact-controls">
+    <button mat-raised-button (click)="editContact(index)" color="primary">
+      Edit
+    </button>
+    <button mat-raised-button (click)="deleteContact(index)" color="accent">
+      Delete
+    </button>
+  </div>
+</section>
